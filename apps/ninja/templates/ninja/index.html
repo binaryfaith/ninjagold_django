@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form action="/process_money" method="POST">
+          {% csrf_token %}
+            Your Gold: {{request.session.gold}}
+        </form>
+        <form action="/process_money" method="POST">
+          {% csrf_token %}
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+
+          <form action="reset">
+              {% csrf_token %}
+              <input type="submit" value="reset" name="reset" >
+          </form>
+          {% if request.session.activities %}
+          {%for i in request.session.activities%}
+              <p> {{i}} {{time}} </p>
+              {% endfor %}
+            {% endif %}
+</body>
+</html>
